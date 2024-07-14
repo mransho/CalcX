@@ -7,6 +7,7 @@ min.addEventListener("click", (e) => {
   if (e.target.nodeName == "DIV" || e.target.nodeName == "I") {
     if (result.textContent === "ERROR") {
       result.textContent = "";
+      return;
     }
     let text = e.target.textContent;
     switch (true) {
@@ -30,12 +31,23 @@ min.addEventListener("click", (e) => {
       case e.target.classList.contains("fa-divide") ||
         e.target.classList.contains("divide"):
         if (
+          result.textContent.charAt(result.textContent.length - 1) === "*" ||
+          result.textContent.charAt(result.textContent.length - 1) === "/" ||
+          result.textContent.charAt(result.textContent.length - 1) === "+" ||
+          result.textContent.charAt(result.textContent.length - 1) === "-"
+        ) {
+          break;
+        }
+        if (
           result.textContent.includes("/") ||
           result.textContent.includes("*") ||
           result.textContent.includes("-") ||
           result.textContent.includes("+")
         ) {
           equals();
+        }
+        if (result.textContent === "ERROR") {
+          return;
         }
         addItem("/");
         break;
@@ -44,12 +56,23 @@ min.addEventListener("click", (e) => {
       case e.target.classList.contains("fa-xmark") ||
         e.target.classList.contains("multiply"):
         if (
+          result.textContent.charAt(result.textContent.length - 1) === "*" ||
+          result.textContent.charAt(result.textContent.length - 1) === "/" ||
+          result.textContent.charAt(result.textContent.length - 1) === "+" ||
+          result.textContent.charAt(result.textContent.length - 1) === "-"
+        ) {
+          break;
+        }
+        if (
           result.textContent.includes("/") ||
           result.textContent.includes("*") ||
           result.textContent.includes("-") ||
           result.textContent.includes("+")
         ) {
           equals();
+        }
+        if (result.textContent === "ERROR") {
+          return;
         }
         addItem("*");
         break;
@@ -58,12 +81,23 @@ min.addEventListener("click", (e) => {
       case e.target.classList.contains("fa-minus") ||
         e.target.classList.contains("minus"):
         if (
+          result.textContent.charAt(result.textContent.length - 1) === "*" ||
+          result.textContent.charAt(result.textContent.length - 1) === "/" ||
+          result.textContent.charAt(result.textContent.length - 1) === "+" ||
+          result.textContent.charAt(result.textContent.length - 1) === "-"
+        ) {
+          break;
+        }
+        if (
           result.textContent.includes("/") ||
           result.textContent.includes("*") ||
           result.textContent.includes("-") ||
           result.textContent.includes("+")
         ) {
           equals();
+        }
+        if (result.textContent === "ERROR") {
+          return;
         }
         addItem("-");
         break;
@@ -72,12 +106,23 @@ min.addEventListener("click", (e) => {
       case e.target.classList.contains("fa-plus") ||
         e.target.classList.contains("plus"):
         if (
+          result.textContent.charAt(result.textContent.length - 1) === "*" ||
+          result.textContent.charAt(result.textContent.length - 1) === "/" ||
+          result.textContent.charAt(result.textContent.length - 1) === "+" ||
+          result.textContent.charAt(result.textContent.length - 1) === "-"
+        ) {
+          break;
+        }
+        if (
           result.textContent.includes("/") ||
           result.textContent.includes("*") ||
           result.textContent.includes("-") ||
           result.textContent.includes("+")
         ) {
           equals();
+        }
+        if (result.textContent === "ERROR") {
+          return;
         }
         addItem("+");
         break;
@@ -125,10 +170,6 @@ function deleteValue() {
   }
   let newValue = result.textContent;
   result.textContent = newValue.substring(0, newValue.length - 1);
-}
-
-function equals() {
-  console.log("equals");
 }
 
 function addItem(value) {
@@ -179,10 +220,14 @@ function addItem(value) {
 
 function percent() {
   equals();
-  let firstResult = Number(firstNum) / 100;
-  firstNum = firstResult;
-  secondNum = "";
-  result.textContent = firstResult;
+  if (result.textContent === "ERROR") {
+    return;
+  } else {
+    let firstResult = Number(firstNum) / 100;
+    firstNum = firstResult;
+    secondNum = "";
+    result.textContent = firstResult;
+  }
 }
 
 function equals() {
@@ -205,10 +250,14 @@ function equals() {
     }
   }
   if (result.textContent.includes("*")) {
-    let firstResult = Number(firstNum) * Number(secondNum);
-    firstNum = firstResult;
-    secondNum = "";
-    result.textContent = firstNum;
+    if (Number(secondNum) != 0) {
+      let firstResult = Number(firstNum) * Number(secondNum);
+      firstNum = firstResult;
+      secondNum = "";
+      result.textContent = firstNum;
+    } else {
+      return;
+    }
   }
   if (result.textContent.includes("+")) {
     let firstResult = Number(firstNum) + Number(secondNum);
