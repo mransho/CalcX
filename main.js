@@ -101,6 +101,8 @@ min.addEventListener("click", (e) => {
 
 function clear() {
   result.textContent = "";
+  firstNum = "";
+  secondNum = "";
 }
 
 function deleteValue() {
@@ -185,16 +187,22 @@ function percent() {
 
 function equals() {
   if (result.textContent.includes("/")) {
-    if (Number(secondNum) === 0) {
+    secondNum.toString();
+    if (secondNum === "0" || secondNum === ".0") {
       result.textContent = "ERROR";
       firstNum = "";
       secondNum = "";
       return;
     }
+    if (secondNum === "" || secondNum === ".") {
+      return;
+    }
     let firstResult = Number(firstNum) / Number(secondNum);
-    firstNum = firstResult;
-    secondNum = "";
-    result.textContent = firstNum;
+    if (!isNaN(firstResult)) {
+      firstNum = firstResult;
+      secondNum = "";
+      result.textContent = firstNum;
+    }
   }
   if (result.textContent.includes("*")) {
     let firstResult = Number(firstNum) * Number(secondNum);
