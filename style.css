@@ -1,0 +1,112 @@
+* {
+    padding: 0;
+    margin: 0;
+
+}
+
+body {
+    background: #222222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.min {
+    width: 430px;
+    margin-inline: auto;
+    border-radius: 27px;
+    overflow: hidden;
+    border: 1px solid #4f4f4f;
+    background: #ffffff;
+
+}
+
+.min .result {
+    min-width: 200px;
+    min-height: 100px;
+    background-color: black;
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    background-color: #ffffff40;
+    min-height: 100px;
+    align-items: center;
+    margin-inline: auto;
+    border-radius: 27px;
+    padding-inline: 10px;
+    overflow-y: hidden;
+    font-size: 23px;
+}
+
+header::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.min .buttons {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    height: 500px;
+    align-items: center;
+    justify-content: center;
+    background: #1c1c1c;
+}
+
+.min .buttons div {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    font-size: 27px;
+    font-weight: 600;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: #6161617d;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.min .buttons div:hover {
+    background-color: #e5e5e57d;
+}
+
+.checked {
+    background-color: red;
+}
+
+.AC,
+.delete,
+.percent,
+.divide,
+.multiply,
+.minus,
+.plus,
+.equals {
+    color: #fd9c33 !important;
+}
+
+.zero,
+.one,
+.two,
+.three,
+.four,
+.five,
+.six,
+.seven,
+.eight,
+.nine {}
+
+.min .buttons .equals {
+    min-width: 80%;
+    border-radius: 20px;
+    grid-column: span 2;
+}
